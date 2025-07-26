@@ -32,36 +32,67 @@ function filterProjects() {
 const buttons = document.getElementsByClassName('buttons')[0]; // Refers to the section on NavBar where buttons will get appended based on login status
 
 function updateNavbar() {
-    const username = localStorage.getItem('username');
-    if (username) {
+    let currentUser = null;
+    try {
+        const raw = localStorage.getItem('currentUser');
+        if (raw && /^[\x20-\x7E]+$/.test(raw)) {
+            currentUser = JSON.parse(raw);
+        }
+    } catch (e) {
+        currentUser = null;
+    }
+    if (currentUser) {
         buttons.innerHTML = `
         <button class="button is-success is-dark has-text-weight-bold">
-            Welcome ${username}
+            <span class="icon">
+                <i class="fas fa-user"></i>
+            </span>
+            <span>Welcome ${currentUser.fullName}</span>
         </button>
         <button class="button is-danger is-dark" id='logout'>
-            Logout
+            <span class="icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </span>
+            <span>Logout</span>
         </button>
         <a class="button is-primary is-dark" href="https://github.com/ruchikakengal">
-            <strong>GitHub</strong>  
+            <span class="icon">
+                <i class="fab fa-github"></i>
+            </span>
+            <span>GitHub</span>
         </a>
         <a class="button is-primary is-dark" href="contributors/contributor.html">
-            <strong>Contributors</strong>
+            <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+            <span>Contributors</span>
         </a>`;
 
         document.getElementById('logout').addEventListener('click', () => {
-            localStorage.removeItem('username');
+            localStorage.removeItem('currentUser');
             updateNavbar();
+            // Optional: Redirect to home page after logout
+            window.location.reload();
         });
     } else {
         buttons.innerHTML = `
         <a class="button is-primary is-dark" href="contributors/contributor.html">
-            <strong>Contributors</strong>
+            <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+            <span>Contributors</span>
         </a>
         <a class="button is-primary is-dark" href="https://github.com/ruchikakengal">
-            <strong>GitHub</strong>
+            <span class="icon">
+                <i class="fab fa-github"></i>
+            </span>
+            <span>GitHub</span>
         </a>
         <a class="button is-success is-light" href="/public/Login.html">
-            <strong>Log in</strong>
+            <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+            </span>
+            <span>Log in</span>
         </a>`;
     }
 }
@@ -69,21 +100,29 @@ function updateNavbar() {
 // Populate the table with project data
 function fillTable() {
     const data = [
-        ["Day 1", "To-Do List", " /public/TO_DO_LIST/todolist.html"],
-        ["Day 2", "Digital Clock", " /public/digital_clock/digitalclock.html"],
-        ["Day 3", " ",],
-        ["Day 4", " ",],
-        ["Day 5", " ",],
-        ["Day 6", " ",],
-        ["Day 7", " ",],
-        ["Day 8", " ",],
-        ["Day 9", " ",],
-        ["Day 10", " ",],
-        ["Day 11", " ",],
-        ["Day 12", " ",],
-        ["Day 13", " ",],
-        ["Day 14", " ",],
-        ["Day 100", " ",],
+        ["Day 1", "To-Do List", "/public/Day-1_TodoList/index.html"],
+        ["Day 2", "Digital Clock", "/public/Day-2_digital_clock/digitalclock.html"],
+        ["Day 3", "ASCII Art Generator", "/public/Day-3_AsciiArtGenerator/index.html"],
+        ["Day 4", "Password Strength Visualizer", "/public/Day-4_password_visualizer/index.html"],
+        ["Day 5", "Physics Simulation", "/public/Day-5_physics_simulation/index.html"],
+        ["Day 6", "Quote Generator", "/public/Day-6_QuoteGenerator/index.html"],
+        ["Day 7", "Character Word Counter", "/public/Day-7_CharacterWordCounter/index.html"],
+        ["Day 8", "Dice Roll Simulator", "/public/Day-8_DiceRollSimulator/index.html"],
+        ["Day 9", "Guess My Number", "/public/Day-9_Guess_My_Number/index.html"],
+        ["Day 10", "Brick Breaker", "/public/Day-10_Neon_Brick_Breaker/index.html"],
+        ["Day 11", "WeatherApp", "/public/Day-11_WeatherApp/index.html"],
+        ["Day 12", "Countdown Banner", "https://countdown-banner.vercel.app/"], /* folder Not there */
+        ["Day 13", "Coin Flip Heads/Tails", "/public/Day-13_Coin_Flip/index.html"],
+        ["Day 14", "E-waste Management Hub", "https://e-waste-management-hub.netlify.app/"],
+        ["Day 15", "Currency Converter", "/public/Day-15_Currency_Converter/index.html"],
+        ["Day 16", "Random User Generator", "/public/Day-16_Random_User_Generator/index.html"],
+        ["Day 17", "Image Search App", "/public/Day-17_Image_Search_App/index.html"],
+        ["Day 18", "WaterMedic", "https://github.com/dipmanmajumdar/WaterMedic"], /* folder Not there */
+        ["Day 19", "URL Shortener", "https://github.com/ANTIK-007/URL-Shortener"], /* folder Not there */
+        ["Day 20", "TicTacToe Game", "/public/Day-20_tictactoe/index.html"],
+        ["Day 21", "Candy Crush", "public/Day-21_candycrush/candy_crush.html"],
+        ["Day 22", "QR Code Generator", "/public/Day-22_QRCodeGenerator/index.html"],
+        ["Day 23", "Palette Generator", "public/Day-22_Palette_generator/index.html"],
 
     ];
 
@@ -91,6 +130,7 @@ function fillTable() {
 
 
     const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
 
     data.forEach(e => {
         const row = document.createElement('tr');
@@ -125,24 +165,24 @@ const body = document.body;
 
 // Check if the user has a saved theme preference
 if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-theme');
-  themeToggle.textContent = '☀️';
+    body.classList.add('dark-theme');
+    themeToggle.textContent = '☀️';
 } else {
-  body.classList.add('light-theme');  // Explicitly set light theme
-  themeToggle.textContent = '🌙';
+    body.classList.add('light-theme');  // Explicitly set light theme
+    themeToggle.textContent = '🌙';
 }
 
 // Toggle theme on button click
 themeToggle.addEventListener('click', () => {
-  if (body.classList.contains('dark-theme')) {
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-    themeToggle.textContent = '🌙';
-    localStorage.setItem('theme', 'light');
-  } else {
-    body.classList.remove('light-theme');
-    body.classList.add('dark-theme');
-    themeToggle.textContent = '☀️';
-    localStorage.setItem('theme', 'dark');
-  }
+    if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    }
 });
