@@ -453,8 +453,10 @@ class WebDev100Days {
         demoLink: "./public/Day-72_Portfolio/index.html",
         category: "advanced",
         technologies: ["HTML", "CSS", "JavaScript"],
-        features: ["Responsive Design", "Smooth Animations", "Contact Form"]
+        features: ["Responsive Design", "Dark mode", "Smooth"]
       },
+      
+
       // Non-numbered projects (using 100+ for consistency)
       {
         originalDay: 101,
@@ -679,7 +681,16 @@ class WebDev100Days {
         category: "utilities",
         technologies: ["HTML", "CSS", "JavaScript", "API"],
         features: ["Visitor Management", "History Tracking", "Search Functionality"]
-      }
+      },
+      {
+        originalDay: 151,
+        name: "Textutils",
+        description: "Powerful text analysis tool with multiple features.",
+        demoLink: "./public/Textutil-Text_Analyser/index.html",
+        category: "Text Analyser",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        features: ["Responsive Design", "Text-Preview", "Dark Mode"]
+      },
 
 
     ];
