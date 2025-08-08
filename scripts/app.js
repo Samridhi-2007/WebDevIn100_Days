@@ -443,8 +443,9 @@ class WebDev100Days {
         demoLink: "./public/Day-72_Portfolio/index.html",
         category: "advanced",
         technologies: ["HTML", "CSS", "JavaScript"],
-        features: ["Responsive Design", "Smooth Animations", "Contact Form"]
+        features: ["Responsive Design", "Dark mode", "Smooth"]
       },
+      // Non-numbered projects (using 100+ for consistency)
       {
         originalDay: 101,
         name: "Etch-a-Sketch",
@@ -746,121 +747,16 @@ class WebDev100Days {
         category: "utilities",
         technologies: ["HTML", "CSS", "JavaScript", "API"],
         features: ["Visitor Management", "History Tracking", "Search Functionality"]
-      },
-      {
-        originalDay: 126,
-        name: " Pixel Art Maker",
-        description: "Create pixel art with a simple grid interface.",
-        demoLink: "./public/Day-76_PixelArt/index.html",
-        category: "creativity",
-        technologies: ["HTML", "CSS", "JavaScript"],
-        features: ["Grid Creation", "Color Selection", "Download Art", "Reset Canvas"]
       }
 
 
-
-
-      ,
-      {
-
-  originalDay: 131,
-    name: "Fruit Ninja",
-      description: "Play with fruits",
-        demoLink: "./public/Day-59/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Cut"]
-},
-{
-
-  originalDay: 132,
-    name: "Solitaire",
-      description: "Play with Cards",
-        demoLink: "./public/Day-90/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Ace", "King"]
-},
-{
-
-  originalDay: 133,
-    name: "Door Game",
-      description: "Open the Doors of your luck",
-        demoLink: "./public/Day-91/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Luck", "Doors"]
-},
-{
-
-  originalDay: 134,
-    name: "Roast Battle",
-      description: "Roast Your self by AI",
-        demoLink: "./public/Day-92/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Roast"]
-},
-{
-
-  originalDay: 135,
-    name: "Compliment Generator",
-      description: "Generate Compliment for your love once",
-        demoLink: "./public/Day-93/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Compliments"]
-},
-{
-
-  originalDay: 136,
-    name: "PickUp Lines",
-      description: "Generate PickUp Lines for your someonce",
-        demoLink: "./public/Day-94/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["PickUp Lines"]
-},
-{
-
-  originalDay: 137,
-    name: "Hero Identity",
-      description: "Know who you are",
-        demoLink: "./public/Day-95/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Hero", "Powers"]
-},
-{
-
-  originalDay: 138,
-    name: "Fotune Teller",
-      description: "Know your future",
-        demoLink: "./public/Day-96/index.html",
-          category: "games",
-            technologies: ["HTML", "CSS", "JavaScript"],
-              features: ["Future", "Fortune"]
-},
-{
-        originalDay: 144,
-        name: "Fitness Tracker",
-        description: "Advanced, vibrant web app to track daily steps and water intake with charts, themes, and responsive design.",
-        demoLink: "./public/Fitness_Tracker/index.html",
-        category: "productivity",
-        technologies: ["HTML", "CSS", "JavaScript", "Chart.js"],
-        features: ["Daily Steps & Water Input", "Dark/Light Mode", "Chart.js Visualizations", "Responsive Design", "Duplicate Prevention", "Tooltips on Charts"]
-       }
-
-
-
-      
-
     ];
-
-this.projects = projectsData.map((project, index) => ({
-  ...project,
-  day: index + 1
-}));
+  
+  // Assign sequential day numbers (1, 2, 3, 4...) regardless of original day numbers
+    this.projects = projectsData.map((project, index) => ({
+      ...project,
+      day: index + 1
+    }));
 
 this.filteredProjects = [...this.projects];
   }
